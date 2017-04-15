@@ -26,7 +26,8 @@ function updateNowPlaying() {
 }
 
 function addTrack() {
-    const url = document.getElementById("url").value;
+    const urlElem = document.getElementById("url");
+    const url = urlElem.value;
 
     if (!url) {
         return;
@@ -36,6 +37,8 @@ function addTrack() {
         method: "POST",
         headers: postHeaders,
         body: `url=${encodeURIComponent(url)}`
+    }).then(() => {
+        urlElem.value = "";
     });
 }
 
