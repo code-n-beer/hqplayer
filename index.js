@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+app.use(express.static("frontend/"));
+
 app.get("/now-playing", (req, res) => {
     res.json(req.app.locals.current);
 });
