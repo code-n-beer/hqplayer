@@ -69,8 +69,19 @@ app.post("/pause", (req, res) => {
     });
 });
 
+function playNext(locals) {
+    const entry = locals.queue.shift();
+
+    if (entry) {
+        locals.current = entry;
+        locals.player.loadStream(entry.url);
+    }
+
+    return entry;
+}
+
 app.post("/next", (req, res) => {
-    const entry = req.app.locals.queue.shift();
+    const entry = playNext(req.app.locals);
 
     if (!entry) {
         res.json({
@@ -79,9 +90,6 @@ app.post("/next", (req, res) => {
 
         return;
     }
-
-    req.app.locals.current = entry;
-    req.app.locals.player.loadStream(entry.url);
 
     res.json({
         status: "playing",
@@ -94,5 +102,6 @@ app.listen(3000, () => {
 
     app.locals.player.on("stopped", () => {
         app.locals.current = null;
+        playNext(app.locals);
     });
 });
