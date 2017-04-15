@@ -1,9 +1,6 @@
-const postOptions = {
-    method: "POST",
-    headers: new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
-    })
-};
+const postHeaders = new Headers({
+    "Content-Type": "application/x-www-form-urlencoded"
+});
 
 function updateNowPlaying() {
     fetch("/now-playing").then((response) => {
@@ -36,8 +33,8 @@ function addTrack() {
     }
 
     fetch("/queue", {
-        method: postOptions.method,
-        headers: postOptions.headers,
+        method: "POST",
+        headers: postHeaders,
         body: `url=${encodeURIComponent(url)}`
     });
 }
@@ -69,6 +66,27 @@ function updateQueue() {
 
         replacement.id = "queue";
         elem.replaceWith(replacement);
+    });
+}
+
+function play() {
+    fetch("/play", {
+        method: "POST",
+        headers: postHeaders
+    });
+}
+
+function pause() {
+    fetch("/pause", {
+        method: "POST",
+        headers: postHeaders
+    });
+}
+
+function next() {
+    fetch("/next", {
+        method: "POST",
+        headers: postHeaders
     });
 }
 
