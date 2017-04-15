@@ -9,9 +9,10 @@
   "author": "mötö",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "node-mpv": "^1.0.3",
-    "promise": "^7.1.1"
+    "ytdl-getinfo": "^1.0.0"
   }
 }
