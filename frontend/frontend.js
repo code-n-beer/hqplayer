@@ -53,10 +53,12 @@ function updateQueue() {
             replacement = document.createElement("span");
             replacement.innerText = "Nothing here :)";
         } else {
-            replacement = document.createElement("div");
+            replacement = document.createElement("ul");
+            replacement.setAttribute("class", "list-group");
 
             queue.forEach((entry) => {
-                const entryNode = document.createElement("p");
+                const entryNode = document.createElement("li");
+                entryNode.setAttribute("class", "list-group-item");
 
                 const linkNode = document.createElement("a");
                 linkNode.href = entry.url;
