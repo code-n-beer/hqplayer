@@ -10,6 +10,7 @@ class Player {
         this.mpv = new mpv(mpvOptions);
         this.current = null;
         this.queue = [];
+        this.paused = false;
 
         this.mpv.on("stopped", this.next.bind(this));
     }
@@ -43,10 +44,12 @@ class Player {
 
     play() {
         this.mpv.play();
+        this.paused = false;
     }
 
     pause() {
         this.mpv.pause();
+        this.paused = true;
     }
 
     next() {
@@ -55,6 +58,10 @@ class Player {
 
         if (entry) {
             this.mpv.loadStream(entry.url);
+
+            if (this.paused) {
+                this.play();
+            }
         } else {
             this.mpv.stop();
         }
