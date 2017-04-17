@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.btn-group-justified {
+  display: flex;
+  width: 100%;
+}
+.btn-group-justified .btn,
+.btn-group-justified .btn-group {
+  flex: 1;
+}
+.btn-group-justified .btn .btn,
+.btn-group-justified .btn-group .btn {
+  width: 100%;
+}
+.btn-group-justified .btn .dropdown-menu,
+.btn-group-justified .btn-group .dropdown-menu {
+  left: auto;
+}
