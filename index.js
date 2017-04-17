@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("frontend/"));
 
 app.get("/now-playing", (req, res) => {
-    res.json(req.app.locals.player.current);
+    res.json(req.app.locals.player.nowPlaying);
 });
 
 app.get("/queue", (req, res) => {

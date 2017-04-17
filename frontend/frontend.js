@@ -6,18 +6,18 @@ function updateNowPlaying() {
     fetch("/now-playing").then((response) => {
             return response.json();
         })
-        .then((info) => {
+        .then((response) => {
             const elem = document.getElementById("now-playing");
 
             let replacement = null;
 
-            if (!info) {
+            if (!response.info) {
                 replacement = document.createElement("span");
                 replacement.innerText = "nothing";
             } else {
                 replacement = document.createElement("a");
-                replacement.href = info.url;
-                replacement.innerText = info.title;
+                replacement.href = response.info.url;
+                replacement.innerText = response.info.title;
             }
 
             replacement.id = "now-playing";

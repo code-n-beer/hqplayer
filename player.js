@@ -15,6 +15,13 @@ class Player {
         this.mpv.on("stopped", this.next.bind(this));
     }
 
+    get nowPlaying() {
+        return {
+            status: this.paused ? "paused" : "playing",
+            info: this.current
+        };
+    }
+
     enqueue(url) {
         return getInfo(url).then((info) => {
             const entry = {
